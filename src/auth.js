@@ -10,6 +10,6 @@ export const login = async({email, password})=>{
         var errorMsg = error.message;
         console.log({errorMsg});
         console.log({error});
+        throw "Error login"
       });
-      return res.user;
 }

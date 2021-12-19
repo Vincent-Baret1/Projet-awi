@@ -4,10 +4,14 @@ import { Nav } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Tab } from "react-bootstrap";
-
+import {useRef} from "react";
+ 
 function FormFicheTechnique() {
+    const nbEtape = useRef(0);
+
     return (
         <div>
+            
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                 <Row>
                     <Col sm={3}>
@@ -52,27 +56,10 @@ function FormFicheTechnique() {
                                 <Form style={{ margin: '10px 30px' }}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Nombre d'étapes : </Form.Label>
-                                        <Form.Control type="text" placeholder="" />
+                                        <Form.Control type="text" placeholder="" ref={nbEtape} />
                                     </Form.Group>
-
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Nom de l'auteur : </Form.Label>
-                                        <Form.Control type="text" placeholder="" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Nombre de couverts : </Form.Label>
-                                        <Form.Control type="text" placeholder="" />
-                                    </Form.Group>
-
-
-                                    <Form.Select aria-label="Default select example">
-                                            <option>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </Form.Select>
                                 </Form>
+                                <h1>{nbEtape.current.value}</h1>
                             </Tab.Pane>
 
                             <Tab.Pane eventKey="third">
