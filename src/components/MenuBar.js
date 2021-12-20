@@ -23,7 +23,11 @@ function MenuBar() {
                                 Fiche technique
                             </Link>
                         </Nav.Link>
-                        <Nav.Link href="#ListIngredient">Liste des ingéredients</Nav.Link>
+                        <Nav.Link href="#ListIngredient">
+                            <Link to="/listIngredientsPage" style={{ textDecoration: 'none', color: 'white' }}>
+                                Liste des ingéredients
+                            </Link>
+                            </Nav.Link>
                         <Nav.Link href="#calculCout">Calcul des coûts</Nav.Link>
                     </Nav>
                 </Container>
