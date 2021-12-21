@@ -10,14 +10,24 @@ import 'firebase/firestore';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// Your web app's Firebase configuration
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBNVAe9zs98vvfcxxXkf2nbO4pAMWOx7mg",
-  authDomain: "projet-awi.firebaseapp.com",
-  projectId: "projet-awi",
-  storageBucket: "projet-awi.appspot.com",
-  messagingSenderId: "511690745437",
-  appId: "1:511690745437:web:a9f9c181a95875e4010fb4"
+
+  apiKey: "AIzaSyB6OPSVE2B86PDuvo5niklt_j4JbOgPANU",
+
+  authDomain: "projet-awi-d0535.firebaseapp.com",
+
+  projectId: "projet-awi-d0535",
+
+  storageBucket: "projet-awi-d0535.appspot.com",
+
+  messagingSenderId: "260340423956",
+
+  appId: "1:260340423956:web:2b7575dc24cd64bdc0f601"
+
 };
+
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);

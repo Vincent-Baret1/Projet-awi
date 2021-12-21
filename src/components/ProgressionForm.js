@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FloatingLabel, Button, Modal, InputGroup, FormControl } from "react-bootstrap";
+import { Form, FloatingLabel, Button, Modal, InputGroup, FormControl, Card } from "react-bootstrap";
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -38,11 +38,14 @@ function MyVerticallyCenteredModal(props) {
     );
 }
 
+
+
 function ProgressionForm() {
     const [modalShow, setModalShow] = React.useState(false);
+    const [cardShow, setCardShow] = React.useState(true);
 
     return (
-        <div style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px" }}>
+        <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", padding: "20px" }}>
             <p> Etape : </p>
             <Form>
                 <FloatingLabel
@@ -61,15 +64,20 @@ function ProgressionForm() {
 
                 <Form.Label>Ingrédients : </Form.Label>
                 <Button variant="primary" onClick={() => setModalShow(true)} style={{ marginLeft: "30px" }}>
-                    Choisir 
+                    Choisir
                 </Button>
 
                 <MyVerticallyCenteredModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
+                <br />
+                <br />
+                <Button variant="primary" onClick={() => setCardShow(false)} style={{ marginLeft: "30px" }}>
+                    Supprimer cette étape
+                </Button>
             </Form>
-        </div>
+        </Card>
     );
 }
 
