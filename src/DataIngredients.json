@@ -1,0 +1,44 @@
+[
+    {
+            "id": 1,
+            "Iname": "chocolat",
+            "Type": "sucreries",
+            "Quantity" : 2000,
+            "Unit" : "Kg"
+    },
+    {
+            "id": 2,
+            "Iname": "poulet",
+            "Type": "viande",
+            "Quantity" : 100,
+            "Unit" : "Kg"
+    },
+    {
+            "id": 3,
+            "Iname": "huile d'olive",
+            "Type": "huile",
+            "Quantity" : 70,
+            "Unit" : "Litres"
+    },
+    {
+        "id": 4,
+        "Iname": "oeufs",
+        "Type": "aliments proteinés",
+        "Quantity" : 2000,
+        "Unit" : "pièce"
+},
+{
+        "id": 6,
+        "Iname": "boeuf",
+        "Type": "viande",
+        "Quantity" : 100,
+        "Unit" : "Kg"
+},
+{
+        "id": 6,
+        "Iname": "farine",
+        "Type": "produit agricole",
+        "Quantity" : 100,
+        "Unit" : "Kg"
+}
+]
