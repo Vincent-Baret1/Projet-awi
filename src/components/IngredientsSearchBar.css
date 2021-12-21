@@ -1,0 +1,49 @@
+.search input {
+  background-color: rgb(75, 124, 197);
+  border: 0;
+  border-radius: 2px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 18px;
+  padding: 15px;
+  height: 30px;
+  width: 300px;
+}
+
+input:focus {
+  outline: none;
+}
+
+
+.dataResult {
+    margin-top: 5px;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(54, 168, 184);
+    box-shadow: rgba(26, 14, 14, 0.35) 0px 5px 15px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+
+.dataResult .dataItem {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.dataItem p {
+  margin-left: 15px;
+}
+
+.dataItem:hover {
+  background-color: rgb(33, 57, 126);
+}
+
+#clearBtn {
+  cursor: pointer;
+}

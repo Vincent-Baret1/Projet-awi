@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import Ingredient from './Ingredient'
 import Table from 'react-bootstrap/Table'
+import IngredientsSearchBar from './IngredientsSearchBar';
+import DataIngredients from '../DataIngredients.json'
 export default class IngredientsList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        /*this.state = {
             ing1: {
                 id: 1,
                 Iname: "chocolat",
@@ -18,13 +20,21 @@ export default class IngredientsList extends Component {
                 Type: "viande",
                 Quantity : 100,
                 Unit : "Kg"
+            },
+            ing3: {
+                id: 3,
+                Iname: "huile d'olive",
+                Type: "huile",
+                Quantity : 70,
+                Unit : "Litres"
             }
-        };
+        };*/
     }
     
     render() {
         return (
             <div>
+                
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -36,12 +46,18 @@ export default class IngredientsList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <Ingredient
-                            ing ={this.state.ing1}/>
-                        <Ingredient
-                            ing ={this.state.ing2}/>
+                    {DataIngredients.map((value, key) => {
+                        return (
+                            <Ingredient
+                            ing ={value}/>
+                        );
+                    })
+                    }
                     </tbody>
-                </Table>   
+                </Table>
+                <IngredientsSearchBar placeholder ={"ingredient you're looking for"} 
+                data = {DataIngredients}/> 
+                 
             </div>
         )
     }
