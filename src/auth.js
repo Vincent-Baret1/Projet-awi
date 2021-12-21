@@ -13,3 +13,7 @@ export const login = async({email, password})=>{
         throw "Error login"
       });
 }
+
+export const logout = () => {
+  auth.signOut();
+};
