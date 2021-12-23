@@ -44,41 +44,45 @@ function ProgressionForm() {
     const [modalShow, setModalShow] = React.useState(false);
     const [cardShow, setCardShow] = React.useState(true);
 
-    return (
-        <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", padding: "20px" }}>
-            <p> Etape : </p>
-            <Form>
-                <FloatingLabel
-                    controlId="floatingInput"
-                    label="Titre"
-                    className="mb-3">
-                    <Form.Control type="text" placeholder="exemple" />
-                </FloatingLabel>
+    if (cardShow == true) {
+        return (
+            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", padding: "20px" }}>
+                <p> Etape : </p>
+                <Form>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Titre"
+                        className="mb-3">
+                        <Form.Control type="text" placeholder="exemple" />
+                    </FloatingLabel>
 
-                <FloatingLabel
-                    controlId="floatingInput"
-                    label="Description"
-                    className="mb-3">
-                    <Form.Control type="text" placeholder="exemple" />
-                </FloatingLabel>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Description"
+                        className="mb-3">
+                        <Form.Control type="text" placeholder="exemple" />
+                    </FloatingLabel>
 
-                <Form.Label>Ingrédients : </Form.Label>
-                <Button variant="primary" onClick={() => setModalShow(true)} style={{ marginLeft: "30px" }}>
-                    Choisir
-                </Button>
+                    <Form.Label>Ingrédients : </Form.Label>
+                    <Button variant="primary" onClick={() => setModalShow(true)} style={{ marginLeft: "30px" }}>
+                        Choisir
+                    </Button>
 
-                <MyVerticallyCenteredModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
-                <br />
-                <br />
-                <Button variant="primary" onClick={() => setCardShow(false)} style={{ marginLeft: "30px" }}>
-                    Supprimer cette étape
-                </Button>
-            </Form>
-        </Card>
-    );
+                    <MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
+                    <br />
+                    <br />
+                    <Button variant="primary" onClick={() => setCardShow(false)} style={{ marginLeft: "30px" }}>
+                        Supprimer cette étape
+                    </Button>
+                </Form>
+            </Card>
+        );
+    } else {
+        return (<div></div>);
+    }
 }
 
 export default ProgressionForm;
