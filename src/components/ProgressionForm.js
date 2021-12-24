@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FloatingLabel, Button, Modal, InputGroup, FormControl, Card } from "react-bootstrap";
 
 function MyVerticallyCenteredModal(props) {
@@ -39,10 +39,12 @@ function MyVerticallyCenteredModal(props) {
 }
 
 
-
 function ProgressionForm() {
     const [modalShow, setModalShow] = React.useState(false);
     const [cardShow, setCardShow] = React.useState(true);
+
+    const [titre, setTitre] = useState('');
+    const [description, setDescription] = useState('');
 
     if (cardShow == true) {
         return (
@@ -53,14 +55,14 @@ function ProgressionForm() {
                         controlId="floatingInput"
                         label="Titre"
                         className="mb-3">
-                        <Form.Control type="text" placeholder="exemple" />
+                        <Form.Control name="titre" type="text" placeholder="exemple" value={titre} onChange={e => setTitre(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Description"
                         className="mb-3">
-                        <Form.Control type="text" placeholder="exemple" />
+                        <Form.Control name="description" type="text" placeholder="exemple" value={description} onChange={e => setDescription(e.target.value)} />
                     </FloatingLabel>
 
                     <Form.Label>Ingrédients : </Form.Label>
