@@ -1,8 +1,3 @@
 h1 {
     text-align: center;
 }
-
-.carte {
-    display: flex;
-    flex-wrap: wrap;
-}

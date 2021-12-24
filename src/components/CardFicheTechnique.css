@@ -1,0 +1,4 @@
+.cardAcceuil {
+    display: flex;
+    flex-wrap: wrap;
+}
