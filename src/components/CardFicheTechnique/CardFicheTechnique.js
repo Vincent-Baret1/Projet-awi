@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { collection, getFirestore } from "firebase/firestore";
-import firebase from "../firebase";
+import firebase from "../../firebase";
 import "./CardFicheTechnique.css"
 
 function CardFicheTechnique() {

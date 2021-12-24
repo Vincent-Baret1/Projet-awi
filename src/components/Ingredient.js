@@ -3,12 +3,14 @@ import { GoPencil } from 'react-icons/go'
 import { AiOutlineDelete } from 'react-icons/ai'
 import Modal from './Modal';
 import { Form, Button } from "react-bootstrap";
+import DeleteIngredient from './DeleteIngredient';
 
 export default class Ingredient extends Component {
     constructor() {
         super();
         this.state = {
-          show: false
+          show: false,
+          deleted: false
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -24,7 +26,7 @@ export default class Ingredient extends Component {
       
     render() {
         return (
-            <tr>
+            <tr >
                 <td>{this.props.ing.id}</td>
                 <td>{this.props.ing.Iname}</td>
                 <td>{this.props.ing.Type}</td>
@@ -53,7 +55,7 @@ export default class Ingredient extends Component {
                     <button onClick={this.showModal}>
                             Modifier <GoPencil />
                             </button>
-                    <button onClick={this.delete}>Supprimer <AiOutlineDelete /> </button>
+                    <DeleteIngredient/>
                 </td>
             </tr>
         )
