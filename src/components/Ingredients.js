@@ -5,6 +5,7 @@ import Table from 'react-bootstrap/Table'
 import { Form, Button } from "react-bootstrap";
 import firebase from "../firebase";
 import IngredientsSearchBar from './IngredientsSearchBar/IngredientsSearchBar';
+import { doc } from 'firebase/firestore';
 
 export default function Ingredients() {
     const [Ing, setIng] = useState([]);
@@ -16,11 +17,11 @@ export default function Ingredients() {
         ref.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
-                items.push(doc.data());
+                items.push([doc.data(), doc.id]);
             });
             setIng(items.sort((a, b) => {
-                if(a.Iname.toLowerCase() < b.Iname.toLowerCase()) return -1;
-                if(a.Iname.toLowerCase() > b.Iname.toLowerCase()) return 1;
+                if(a[0].Iname.toLowerCase() < b[0].Iname.toLowerCase()) return -1;
+                if(a[0].Iname.toLowerCase() > b[0].Iname.toLowerCase()) return 1;
                 return 0;
                }));
             setLoading(false);
@@ -54,9 +55,13 @@ export default function Ingredients() {
                     </thead>
                     <tbody>
                         {Ing.map((value, key) => {
+                            value[0].id = key +1
                                 return (
+                                    <>
                                     <Ingredient
-                                        ing={value} />
+                                        ing={value[0]} id = {value[1]}/>
+                                    </>
+                                    
                                 );                       
                         })
                         }

@@ -55,7 +55,7 @@ export default class Ingredient extends Component {
                     <button onClick={this.showModal}>
                             Modifier <GoPencil />
                             </button>
-                    <DeleteIngredient/>
+                    <DeleteIngredient id={this.props.id}/>
                 </td>
             </tr>
         )
