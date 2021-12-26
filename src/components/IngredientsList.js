@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
-import Ingredient from './Ingredient'
-import Table from 'react-bootstrap/Table'
-import IngredientsSearchBar from './IngredientsSearchBar';
+
+import IngredientsSearchBar from './IngredientsSearchBar/IngredientsSearchBar';
 import DataIngredients from '../DataIngredients.json'
+import AddIcon from '@material-ui/icons/Add';
+import Modal from './Modal';
+import { Form, Button } from "react-bootstrap";
+import IngredientForm from './IngredientForm';
+import firebase from "../firebase";
+import Ingredients from './Ingredients';
+
 export default class IngredientsList extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            show: false
+        };
+        
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+
         /*this.state = {
             ing1: {
                 id: 1,
@@ -29,35 +42,32 @@ export default class IngredientsList extends Component {
                 Unit : "Litres"
             }
         };*/
+
     }
-    
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+
     render() {
+        
         return (
             <div>
                 
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Nom</th>
-                            <th>Catégorie</th>
-                            <th>Quantité</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {DataIngredients.map((value, key) => {
-                        return (
-                            <Ingredient
-                            ing ={value}/>
-                        );
-                    })
-                    }
-                    </tbody>
-                </Table>
-                <IngredientsSearchBar placeholder ={"ingredient you're looking for"} 
-                data = {DataIngredients}/> 
-                 
+
+                <Modal show={this.state.show} handleClose={this.hideModal}>
+                    <div>
+                        <IngredientForm />
+                    </div>
+                </Modal>
+
+                <button onClick={this.showModal}>Ajouter un ingrédient<AddIcon /></button>
+
+                <Ingredients/>
+
             </div>
         )
     }

@@ -13,7 +13,7 @@ function IngredientsSearchBar({ placeholder, data }) {
         setIngEntered(searchIng)
 
         const newFilter = data.filter((value) => {
-            return value.Iname.toLowerCase().includes(searchIng.toLowerCase())
+            return value[0].Iname.toLowerCase().startsWith(searchIng.toLowerCase())
         });
         if (searchIng === "") {
             setFilteredData([]);
@@ -49,7 +49,7 @@ function IngredientsSearchBar({ placeholder, data }) {
                     {filteredData.map((value, key) => {
                         return (
                             <div className="dataItem">
-                                <p>{value.Iname}</p>
+                                <p>{value[0].Iname}</p>
                             </div>
                         );
                     })
