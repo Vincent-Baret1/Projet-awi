@@ -1,10 +1,10 @@
 import React from "react";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { collection, addDoc, getFirestore, updateDoc } from "firebase/firestore";
 
 const db = getFirestore();
 
-async function sendEnteteData(Iname, Type, Quantity, Unit) {
+async function sendIngredient(Iname, Type, Quantity, Unit) {
     try {
         const docRef = await addDoc(collection(db, "Ingrédients"), {
             Iname: Iname,
@@ -75,7 +75,7 @@ class IngredientForm extends React.Component {
                         <Form.Control type="text" name="Unit" placeholder="exemple" value={this.state.Unit} onChange={this.handleChange} />
                     </FloatingLabel>
 
-                    <Button variant="primary" onClick={() => {sendEnteteData(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit); this.resetForm();}}>
+                    <Button variant="primary" onClick={() => {sendIngredient(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit); this.resetForm();}}>
                         Envoyer
                     </Button>
                 </Form>

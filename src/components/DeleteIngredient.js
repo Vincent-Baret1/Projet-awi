@@ -1,7 +1,6 @@
 import React from 'react'
 import { AiOutlineDelete } from 'react-icons/ai'
 import firebase from '../firebase'
-import { doc, deleteDoc, documentId } from "firebase/firestore";
 
 export default function DeleteIngredient(props) {
     const db = firebase.firestore()
