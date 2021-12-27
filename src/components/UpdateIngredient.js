@@ -5,13 +5,14 @@ import { GoPencil } from 'react-icons/go'
 import Modal from './Modal';
 import { Form, Button } from "react-bootstrap";
 const db = firebase.firestore()
-function changeIng(newIname, newType, newQuantity, newUnit, id) {
+function changeIng(newIname, newType, newQuantity, newUnit, newCu, id) {
     db.collection("Ingrédients").doc(id).update(
         {
             Iname: newIname,
             Type: newType,
             Quantity: newQuantity,
-            Unit: newUnit
+            Unit: newUnit,
+            Cu: newCu
         }
     )
 }
@@ -23,7 +24,8 @@ export default class UpdateIngredient extends Component {
             Iname: this.props.ing.Iname,
             Type: this.props.ing.Type,
             Quantity: this.props.ing.Quantity,
-            Unit: this.props.ing.Unit
+            Unit: this.props.ing.Unit,
+            Cu: this.props.ing.Cu
 
         };
         this.showModal = this.showModal.bind(this);
@@ -33,6 +35,7 @@ export default class UpdateIngredient extends Component {
         this.handleChangeType = this.handleChangeType.bind(this);
         this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
         this.handleChangeUnit = this.handleChangeUnit.bind(this);
+        this.handleChangeCu = this.handleChangeCu.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChangeName(event) {
@@ -47,9 +50,12 @@ export default class UpdateIngredient extends Component {
     handleChangeUnit(event) {
         this.setState({ Unit : event.target.value });
     } 
+    handleChangeCu(event) {
+        this.setState({ Cu : event.target.value });
+    } 
 
     handleSubmit(event) {
-        changeIng(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit, this.props.id)
+        changeIng(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit,this.state.Cu, this.props.id)
         alert('Le nom a été soumis : ' + this.state.Iname);
         event.preventDefault();
     }
@@ -78,6 +84,11 @@ export default class UpdateIngredient extends Component {
 
                             <Form.Label placeholder={this.props.ing.Iname}>Unit</Form.Label>
                             <Form.Control defaultValue={this.state.Unit} onChange={this.handleChangeUnit}/>
+
+                            <Form.Label placeholder={this.props.ing.Iname}>Unit</Form.Label>
+                            <Form.Control defaultValue={this.state.Cu} onChange={this.handleChangeCu}/>
+
+
                             <Button type="submit" >
                                 Submit
                             </Button>

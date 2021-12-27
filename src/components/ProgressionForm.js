@@ -45,10 +45,10 @@ function ProgressionForm() {
 
     const [titre, setTitre] = useState('');
     const [description, setDescription] = useState('');
-
+    const [duree, setDuree ] = useState();
     if (cardShow == true) {
         return (
-            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", padding: "20px" }}>
+            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", marginBottom:"30px", padding: "20px" }}>
                 <p> Etape : </p>
                 <Form>
                     <FloatingLabel
@@ -63,6 +63,13 @@ function ProgressionForm() {
                         label="Description"
                         className="mb-3">
                         <Form.Control name="description" type="text" placeholder="exemple" value={description} onChange={e => setDescription(e.target.value)} />
+                    </FloatingLabel>
+
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="durée"
+                        className="mb-3">
+                        <Form.Control name="durée" type="text" placeholder="exemple" value={duree} onChange={e => setDuree(e.target.value)} />
                     </FloatingLabel>
 
                     <Form.Label>Ingrédients : </Form.Label>

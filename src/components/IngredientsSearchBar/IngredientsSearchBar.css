@@ -11,7 +11,10 @@
   height: 30px;
   width: 300px;
 }
-
+.search {
+  width : 50%;
+  float: right;
+}
 input:focus {
   outline: none;
 }

@@ -9,7 +9,7 @@ import IngredientForm from './IngredientForm';
 import firebase from "../firebase";
 import Ingredients from './Ingredients';
 
-export default class IngredientsList extends Component {
+export default class Recette extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,30 +18,6 @@ export default class IngredientsList extends Component {
         
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
-
-        /*this.state = {
-            ing1: {
-                id: 1,
-                Iname: "chocolat",
-                Type: "sucreries2",
-                Quantity : 2000,
-                Unit : "Kg"
-            },
-            ing2: {
-                id: 2,
-                Iname: "poulet",
-                Type: "viande",
-                Quantity : 100,
-                Unit : "Kg"
-            },
-            ing3: {
-                id: 3,
-                Iname: "huile d'olive",
-                Type: "huile",
-                Quantity : 70,
-                Unit : "Litres"
-            }
-        };*/
 
     }
     showModal = () => {
@@ -53,20 +29,16 @@ export default class IngredientsList extends Component {
     };
 
     render() {
-        
         return (
             <div>
                 
-
                 <Modal show={this.state.show} handleClose={this.hideModal}>
                     <div>
-                        <IngredientForm />
+                        <IngredientForm NomPlat={"Recette1"} />
                     </div>
                 </Modal>
 
                 <button style = {{width : "25%", float : "left"}} onClick={this.showModal}>Ajouter un ingrédient<AddIcon /></button>
-
-                <Ingredients/>
 
             </div>
         )

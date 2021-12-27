@@ -15,6 +15,7 @@ export default class Ingredient extends Component {
                 <td>{this.props.ing.Iname}</td>
                 <td>{this.props.ing.Type}</td>
                 <td>{this.props.ing.Quantity} {this.props.ing.Unit}</td>
+                <td>{this.props.ing.Cu} € </td>
                 <td>
                     <UpdateIngredient id={this.props.id} ing = {this.props.ing}/>
                     <DeleteIngredient id={this.props.id}/>

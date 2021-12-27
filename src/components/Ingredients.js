@@ -50,6 +50,7 @@ export default function Ingredients() {
                             <th>Nom</th>
                             <th>Catégorie</th>
                             <th>Quantité</th>
+                            <th>Coût Unitaire</th>
                             <th></th>
                         </tr>
                     </thead>

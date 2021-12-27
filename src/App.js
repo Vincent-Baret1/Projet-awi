@@ -11,9 +11,6 @@ function App() {
       <h1>Fiches techniques déjà réalisées</h1>
       <div class="carte">
         <CardFicheTechnique />
-        <CardFicheTechnique />
-        <CardFicheTechnique />
-        <CardFicheTechnique />
       </div>
     </div>
   );

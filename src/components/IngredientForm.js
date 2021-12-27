@@ -1,16 +1,32 @@
 import React from "react";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
 import { collection, addDoc, getFirestore, updateDoc } from "firebase/firestore";
-
+import Select from 'react-select'
 const db = getFirestore();
 
-async function sendIngredient(Iname, Type, Quantity, Unit) {
+async function sendIngredient(Iname, Type, Quantity, Unit, Cu) {
     try {
         const docRef = await addDoc(collection(db, "Ingrédients"), {
             Iname: Iname,
             Type : Type,
             Quantity : Quantity,
-            Unit : Unit
+            Unit : Unit,
+            Cu : Cu
+        });
+        alert("Ingrédient ajouté à la base !");
+    } catch (e) {
+        console.error("Error adding document : ", e);
+    }
+}
+
+async function sendIngredientToRecipe(Iname, Type, Quantity, Unit, Cu, NomPlat) {
+    try {
+        const docRef = await addDoc(collection(collection(db, "Recettes"),"Recette1"), {
+            Iname: Iname,
+            Type : Type,
+            Quantity : Quantity,
+            Unit : Unit,
+            Cu : Cu
         });
         alert("Ingrédient ajouté à la base !");
     } catch (e) {
@@ -21,7 +37,7 @@ async function sendIngredient(Iname, Type, Quantity, Unit) {
 class IngredientForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { Iname: '', Type: '', Quantity: 0,Unit : '' };
+        this.state = { Iname: '', Type: '', Quantity: 0,Unit : '',Cu : 0 };
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -33,7 +49,7 @@ class IngredientForm extends React.Component {
     }
 
     resetForm() {
-        this.setState({Iname: '', Type: '', Quantity: 0,Unit : '' });
+        this.setState({Iname: '', Type: '', Quantity: 0,Unit : '' , Cu : 0});
     }
 
     render() {
@@ -41,7 +57,11 @@ class IngredientForm extends React.Component {
         const Iname = this.state.Iname;
         const Type = this.state.Type;
         const Quantity = this.state.Quantity;
-        const Unit = this.state.Unit;
+        const UnitOptions = [
+            { value: 'Kg', label: 'Kilograms' },
+            { value: 'L', label: 'Litres' },
+            { value: 'Bottle', label: 'bottles' }
+          ];
 
         return (
             <div>
@@ -70,12 +90,27 @@ class IngredientForm extends React.Component {
 
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Unité"
+                        label="coût unitaire"
                         className="mb-3">
-                        <Form.Control type="text" name="Unit" placeholder="exemple" value={this.state.Unit} onChange={this.handleChange} />
+                        <Form.Control type="text" name="Cu" placeholder="exemple" value={this.state.Cu} onChange={this.handleChange} />
                     </FloatingLabel>
 
-                    <Button variant="primary" onClick={() => {sendIngredient(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit); this.resetForm();}}>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Unité"
+                        className="mb-3">
+                        <Form.Control type="select" name="Unit" placeholder="exemple" value={this.state.Unit} onChange={this.handleChange} />
+                    </FloatingLabel>
+
+                    <Button variant="primary" onClick={() => {
+                        if(this.props.NomPlat == null){
+                            sendIngredient(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit, this.state.Cu); this.resetForm();
+                        }
+                        else{
+                            alert("on est ici")
+                            sendIngredientToRecipe(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit, this.state.Cu, this.props.NomPlat); this.resetForm();
+                        }    
+                    }}>
                         Envoyer
                     </Button>
                 </Form>

@@ -2,3 +2,6 @@
     display: flex;
     flex-wrap: wrap;
 }
+.card:hover {
+    background-color: aqua;
+}

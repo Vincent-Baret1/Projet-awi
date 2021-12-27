@@ -36,16 +36,19 @@ function CardFicheTechnique() {
 
 
     return (
-        <div class="cardAcceuil">
+        <div class="cardAcceuil" >
             {enTete.map((elt) => (<Card
                 bg="primary"
                 key={elt.id}
                 text="Fiche Technique"
                 style={{ width: '18rem', margin: '10px' }}
                 className="mb-2"
-                
+                class = "card"
+                onMouseOver="visualiser la fiche"
+                style={{cursor: "pointer"}}
+                onClick={() => alert(elt.NomPlat)}
             >
-                <Card.Header></Card.Header>
+                <Card.Header>{elt.NomPlat}</Card.Header>
                 <Card.Body>
                     <Card.Title>Nom du plat : {elt.NomPlat}</Card.Title>
                     <Card.Text>
