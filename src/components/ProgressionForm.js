@@ -7,8 +7,7 @@ function MyVerticallyCenteredModal(props) {
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
+            centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Choisir des ingrédients :
@@ -39,39 +38,37 @@ function MyVerticallyCenteredModal(props) {
 }
 
 
-function ProgressionForm(props) {
+function ProgressionForm() {
     const [modalShow, setModalShow] = React.useState(false);
     const [cardShow, setCardShow] = React.useState(true);
 
-
-    const {titre, onChangeTitre} = props;
-    const {description, onChangeDescription} = props;
-    const {duree, onChangeDuree} = props;
-
+    const [titre, setTitre] = useState('');
+    const [description, setDescription] = useState('');
+    const [duree, setDuree] = useState();
     if (cardShow == true) {
         return (
-            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", marginBottom:"30px", padding: "20px" }}>
+            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", marginBottom: "30px", padding: "20px" }}>
                 <p> Etape : </p>
                 <Form>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Titre"
                         className="mb-3">
-                        <Form.Control name="titre" type="text" placeholder="exemple" value={titre} onChange={onChangeTitre} />
+                        <Form.Control name="titre" type="text" placeholder="exemple" value={titre} onChange={e => setTitre(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Description"
                         className="mb-3">
-                        <Form.Control name="description" type="text" placeholder="exemple" value={description} onChange={onChangeDescription} />
+                        <Form.Control name="description" type="text" placeholder="exemple" value={description} onChange={e => setDescription(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         controlId="floatingInput"
                         label="durée"
                         className="mb-3">
-                        <Form.Control name="durée" type="text" placeholder="exemple" value={duree} onChange={onChangeDuree} />
+                        <Form.Control name="durée" type="text" placeholder="exemple" value={duree} onChange={e => setDuree(e.target.value)} />
                     </FloatingLabel>
 
                     <Form.Label>Ingrédients : </Form.Label>
