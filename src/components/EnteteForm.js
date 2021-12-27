@@ -1,45 +1,13 @@
 import React from "react";
-import { FloatingLabel, Form, Button } from "react-bootstrap";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
-
-const db = getFirestore();
-
-async function sendEnteteData(nomPlat, nomAuteur, nbCouvert) {
-    try {
-        const docRef = await addDoc(collection(db, "En-tête fiche technique"), {
-            NomPlat: nomPlat,
-            NomAuteur: nomAuteur,
-            NbCouvert: nbCouvert
-        });
-        alert("En-tête ajouté à la base");
-    } catch (e) {
-        console.error("Error adding document : ", e);
-    }
-}
+import { FloatingLabel, Form } from "react-bootstrap";
 
 class EnteteForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { nomPlat: '', nomAuteur: '', nbCouvert: '' };
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
-    }
-
-    resetForm() {
-        this.setState({nomPlat:'', nomAuteur:'', nbCouvert:''});
-    }
 
     render() {
 
-        const nomPlat = this.state.nomPlat;
-        const nomAuteur = this.state.nomAuteur;
-        const nbCouvert = this.state.nbCouvert;
+        const {nomPlat, onChangeNomPlat} = this.props;
+        const {nomAuteur, onChangeNomAuteur} = this.props;
+        const {nbCouvert, onChangeNbCouvert} = this.props;
 
         return (
             <div>
@@ -48,26 +16,22 @@ class EnteteForm extends React.Component {
                         controlId="floatingInput"
                         label="Nom du plat"
                         className="mb-3">
-                        <Form.Control type="text" name="nomPlat" placeholder="exemple" value={this.state.nomPlat} onChange={this.handleChange} />
+                        <Form.Control type="text" name="nomPlat" placeholder="exemple" value={nomPlat} onChange={onChangeNomPlat} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Nom de l'auteur"
                         className="mb-3">
-                        <Form.Control type="text" name="nomAuteur" placeholder="exemple" value={this.state.nomAuteur} onChange={this.handleChange} />
+                        <Form.Control type="text" name="nomAuteur" placeholder="exemple" value={nomAuteur} onChange={onChangeNomAuteur} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Nombre de couvert"
                         className="mb-3">
-                        <Form.Control type="text" name="nbCouvert" placeholder="exemple" value={this.state.nbCouvert} onChange={this.handleChange} />
+                        <Form.Control type="text" name="nbCouvert" placeholder="exemple" value={nbCouvert} onChange={onChangeNbCouvert} />
                     </FloatingLabel>
-
-                    <Button variant="primary" onClick={() => {sendEnteteData(this.state.nomPlat, this.state.nomAuteur, this.state.nbCouvert); this.resetForm();}}>
-                        Envoyer
-                    </Button>
                 </Form>
             </div>
         );

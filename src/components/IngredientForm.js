@@ -1,7 +1,6 @@
 import React from "react";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
 import { collection, addDoc, getFirestore, updateDoc } from "firebase/firestore";
-import Select from 'react-select'
 const db = getFirestore();
 
 async function sendIngredient(Iname, Type, Quantity, Unit, Cu) {
