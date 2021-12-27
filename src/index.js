@@ -8,14 +8,18 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import FicheTechniquePage from './FicheTechniquePage';
 import ListIngredientsPage from './ListIngredientsPage';
+import HomePage from './HomePage';
+import PageVisitor from './PageVisitor';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/LoginPage" element={<LoginPage />} />
       <Route path="/FicheTechniquePage" element={<FicheTechniquePage />} />
       <Route path="/ListIngredientsPage" element={<ListIngredientsPage />} />
+      <Route path="/App" element={<App />} />
+      <Route path="/PageVisitor" element={<PageVisitor />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

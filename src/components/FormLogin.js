@@ -19,7 +19,7 @@ function FormLogin() {
             setError("");
             setLoading(true);
             await login(form);
-            navigate("/")
+            navigate("/App")
         } catch {
             setError("Failed to log in");
         }

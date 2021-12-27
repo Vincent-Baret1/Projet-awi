@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function LoginPage() {
     return (
         <div>
-            <MenuBar />
             <FormLogin />
         </div>
     );
