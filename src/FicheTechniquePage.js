@@ -4,6 +4,8 @@ import MenuBar from "./components/MenuBar";
 import { Button } from "react-bootstrap";
 import ProgressionForm from "./components/ProgressionForm";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
+import IngredientForm from "./components/IngredientForm";
+import Modal from "./components/Modal";
 
 
 const db = getFirestore();
@@ -22,7 +24,7 @@ async function sendEnteteData(nomPlat, nomAuteur, nbCouvert) {
 }
 
 function FicheTechniquePage() {
-    
+
     const [nomPlat, setNomPlat] = useState('');
     const onChangeNomPlatHandler = event => {
         setNomPlat(event.target.value);
