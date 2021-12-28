@@ -41,11 +41,10 @@ function CardFicheTechnique() {
                 bg="primary"
                 key={elt.id}
                 text="Fiche Technique"
-                style={{ width: '18rem', margin: '10px' }}
+                style={{ width: '18rem', margin : '10px',cursor: "pointer" }}
                 className="mb-2"
                 class = "card"
                 onMouseOver="visualiser la fiche"
-                style={{cursor: "pointer"}}
                 onClick={() => alert(elt.NomPlat)}
             >
                 <Card.Header>{elt.NomPlat}</Card.Header>
