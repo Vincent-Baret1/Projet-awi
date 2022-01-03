@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { collection, getFirestore } from "firebase/firestore";
 import firebase from "../../firebase";
 import "./CardFicheTechnique.css"
-import Modal from "../Modal";
 import IngredientForm from "../IngredientForm";
+import Modal from "../Modal";
 
 function CardFicheTechnique() {
 
@@ -41,14 +41,17 @@ function CardFicheTechnique() {
         <div class="cardAcceuil" >
             {enTete.map((elt) => (
                 <div>
-                    <Modal show={ficheTech} handleClose={() => setFicheTech(false)}>
-                        <h1>Fiche Technique : </h1>
-                        <h3>nom du plat : {elt.NomPlat}</h3>
-                        <h3>nom de l'auteur : {elt.NomAuteur}</h3>
-                        <h3>nombre de couverts : {elt.NbCouvert}</h3>
-                        <h3>prix total : *calcul du coût total*</h3>
-                    </Modal>
-                    
+                        <Modal show={ficheTech}
+                        handleClose= {() => setFicheTech(false)}>
+                            <h1>Fiche Technique : </h1>
+                            <h3>nom du plat : *nom du plat*</h3>
+                            <h3>nom de l'auteur : *Auteur*</h3>
+                            <h3>nombre de couverts : *nb de couverts*</h3>
+                            <h3>prix total : *calcul du coût total*</h3>
+                        </Modal>
+                        
+                            
+
                     <Card
                         onClick={() => setFicheTech(true)}
                         bg="primary"
@@ -58,7 +61,7 @@ function CardFicheTechnique() {
                         className="mb-2"
                         class="card"
                         onMouseOver="visualiser la fiche"
-                        /*onClick={() => alert(elt.NomPlat)}*/
+                    /*onClick={() => alert(elt.NomPlat)}*/
                     >
                         <Card.Header >{elt.NomPlat}</Card.Header>
                         <Card.Body>

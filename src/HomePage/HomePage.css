@@ -1,0 +1,37 @@
+body {
+    background-color:navajowhite;
+}
+
+
+.titleHomePage{
+    position: relative;
+    color: whitesmoke;
+    font-style: italic;
+    font-family: cursive;
+    
+}
+.imageCaption{
+    text-align: center;
+    font-style: italic;
+    font-family: cursive;
+    margin-bottom: 15px;
+}
+.MainLogo{
+    position: relative;
+    margin-left: 25%;
+
+}
+.MainButtons{
+    position: relative;
+    margin-left: 25%;
+}
+.LogoAndButtons {
+    position: fixed;
+    left : 50%; 
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color:whitesmoke;
+    border-radius: 10px;
+    height:80%;
+    width:50%
+}   

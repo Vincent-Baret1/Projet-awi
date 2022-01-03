@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import FicheTechniquePage from './FicheTechniquePage';
 import ListIngredientsPage from './ListIngredientsPage';
-import HomePage from './HomePage';
+import HomePage from './HomePage/HomePage';
 import PageVisitor from './PageVisitor';
 
 ReactDOM.render(
