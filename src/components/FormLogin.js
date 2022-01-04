@@ -33,17 +33,23 @@ function FormLogin() {
                 <Form onSubmit={handleSubmit} style={{ margin: '30px 30px' }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Adresse email : </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange={(e) =>
+                        <Form.Control 
+                        type="email" 
+                        placeholder="Enter email" 
+                        onChange={(e) =>
                     setForm({ ...form, email: e.target.value })} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Mot de passe : </Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={(e) =>
+                        <Form.Control 
+                        type="password" 
+                        placeholder="Password" 
+                        onChange={(e) =>
                     setForm({ ...form, password: e.target.value })} required />
                     </Form.Group>
 
-                    <Button  disabled={loading}  variant="primary" type="submit">
+                    <Button  disabled={loading}  variant="dark" type="submit">
                         Login
                     </Button>
                 </Form>

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from './LoginPage';
+import LoginPage from './LoginPage/LoginPage';
 import FicheTechniquePage from './FicheTechniquePage';
 import ListIngredientsPage from './ListIngredientsPage';
 import HomePage from './HomePage/HomePage';
