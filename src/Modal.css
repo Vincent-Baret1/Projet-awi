@@ -6,6 +6,7 @@
     height: 100%;
     background: rgba(37, 108, 155, 0.6);
     animation: 3s ease-in 1s 2 reverse both paused slidein;
+    
   }
   .modal-main {
     position:fixed;
@@ -15,6 +16,7 @@
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
+    border-radius: 10px;
   }
 
   .display-block {
@@ -23,4 +25,8 @@
   
   .display-none {
     display: none;
+  }
+  .exit {
+    background-color: red;
+    color: white;
   }
