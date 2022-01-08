@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EnteteForm from "./components/EnteteForm";
-import MenuBar from "./components/MenuBar";
+import MenuBar from "./components/MenuBar/MenuBar";
 import { Button } from "react-bootstrap";
 import ProgressionForm from "./components/ProgressionForm";
 import { collection, addDoc, getFirestore } from "firebase/firestore";

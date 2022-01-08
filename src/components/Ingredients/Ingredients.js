@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import Ingredient from './Ingredient'
+import Ingredient from '../Ingredient'
 import Table from 'react-bootstrap/Table'
 import { Form, Button } from "react-bootstrap";
-import firebase from "../firebase";
-import IngredientsSearchBar from './IngredientsSearchBar/IngredientsSearchBar';
+import firebase from "../../firebase";
+import IngredientsSearchBar from '../IngredientsSearchBar/IngredientsSearchBar';
 import { doc } from 'firebase/firestore';
+import './Ingredients.css'
 
 export default function Ingredients() {
     const [Ing, setIng] = useState([]);
@@ -41,9 +42,9 @@ export default function Ingredients() {
     }
     return (<div>
         <IngredientsSearchBar
-                    placeholder={"ingredient you're looking for"}
+                    placeholder={"Rechrche d'ingrédient"}
                     data={Ing} />
-            <Table striped bordered hover>
+            <Table className='IngredientTable' striped bordered hover>
                     <thead>
                         <tr>
                             <th>id</th>
@@ -59,8 +60,7 @@ export default function Ingredients() {
                             value[0].id = key +1
                                 return (
                                     <>
-                                    <Ingredient
-                                        ing={value[0]} id = {value[1]}/>
+                                    <Ingredient ing={value[0]} id = {value[1]}/>
                                     </>
                                     
                                 );                       

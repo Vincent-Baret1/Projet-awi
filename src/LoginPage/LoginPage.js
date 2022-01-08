@@ -1,4 +1,4 @@
-import MenuBar from '../components/MenuBar';
+import MenuBar from '../components/MenuBar/MenuBar';
 import FormLogin from '../components/FormLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginPage.css';

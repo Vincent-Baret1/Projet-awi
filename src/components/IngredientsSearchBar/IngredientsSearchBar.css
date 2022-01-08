@@ -1,5 +1,5 @@
 .search input {
-  background-color: rgb(75, 124, 197);
+  background-color: whitesmoke;
   border: 0;
   border-radius: 2px;
   border-top-right-radius: 10px;
@@ -24,7 +24,7 @@ input:focus {
     margin-top: 5px;
     width: 300px;
     height: 200px;
-    background-color: rgb(54, 168, 184);
+    background-color: rgb(170, 193, 196);
     box-shadow: rgba(26, 14, 14, 0.35) 0px 5px 15px;
     overflow: hidden;
     overflow-y: auto;

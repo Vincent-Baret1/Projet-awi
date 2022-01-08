@@ -1,5 +1,5 @@
 import './App.css';
-import MenuBar from './components/MenuBar';
+import MenuBar from './components/MenuBar/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardFicheTechnique from './components/CardFicheTechnique/CardFicheTechnique';
 import DataIngredients from './DataIngredients.json'

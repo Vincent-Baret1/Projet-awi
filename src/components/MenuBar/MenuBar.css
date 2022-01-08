@@ -1,0 +1,14 @@
+.Nav {
+    height: 10%;
+    border-radius: 10px;  
+    width:auto;
+    margin-bottom: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.title{
+    font-style: italic;
+    font-family: cursive;
+    margin-bottom: 20px;
+    margin-right: 50px;
+}

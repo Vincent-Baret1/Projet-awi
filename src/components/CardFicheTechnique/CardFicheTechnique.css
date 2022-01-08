@@ -2,6 +2,21 @@
     display: flex;
     flex-wrap: wrap;
 }
-.card:hover {
-    background-color: aqua;
+
+.deleteBtn {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    width : auto ;
+    align-self: center;
+    color: whitesmoke;
+    margin-left: 10%
+}
+.modifyBtn{
+    width: auto;
+    text-align: center;
+    background-color: rgb(253, 252, 252);
+    width : auto ;
+    align-self: center;
+    color: black;
+    margin-left: 40%
 }

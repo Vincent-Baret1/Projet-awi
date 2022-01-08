@@ -4,13 +4,19 @@ import { collection, getFirestore } from "firebase/firestore";
 import firebase from "../../firebase";
 import "./CardFicheTechnique.css"
 import IngredientForm from "../IngredientForm";
+import ModalFicheTech from "../ModalFicheTech";
 import Modal from "../Modal";
+import DeleteFicheTech from "../DeleteFicheTech";
+
+import EditIcon from '@mui/icons-material/Edit';
+import Delete from "@mui/icons-material/Delete";
 
 function CardFicheTechnique() {
 
     const [enTete, setEnTete] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [ficheTech, setFicheTech] = useState(false)
+    const [ModalFicheTech, setModalFicheTech] = useState(false)
+    const [Items, setItems] = useState()
 
     const ref = firebase.firestore().collection("En-tête fiche technique");
 
@@ -19,12 +25,18 @@ function CardFicheTechnique() {
         ref.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
-                items.push(doc.data());
+                items.push([doc.data(), doc.id]);
             });
             setEnTete(items);
             setLoading(false);
         })
     }
+    //à faire une fonction qui récupère la fiche technique de la base de données et le renvoie dans un modal
+
+    function getFicheTech(NomPlat) {
+
+    }
+    //
 
     useEffect(() => {
         getEnTete();
@@ -41,38 +53,39 @@ function CardFicheTechnique() {
         <div class="cardAcceuil" >
             {enTete.map((elt) => (
                 <div>
-                        <Modal show={ficheTech}
-                        handleClose= {() => setFicheTech(false)}>
-                            <h1>Fiche Technique : </h1>
-                            <h3>nom du plat : *nom du plat*</h3>
-                            <h3>nom de l'auteur : *Auteur*</h3>
-                            <h3>nombre de couverts : *nb de couverts*</h3>
-                            <h3>prix total : *calcul du coût total*</h3>
-                        </Modal>
-                        
-                            
+                    <Modal show={ModalFicheTech}
+                        handleClose={() => setModalFicheTech(false)}>
+                        <h1> {elt[0].NomAuteur} </h1>
+                    </Modal>
 
                     <Card
-                        onClick={() => setFicheTech(true)}
-                        bg="primary"
-                        key={elt.id}
+                        bg="white"
+                        key={elt[0].id}
                         text="Fiche Technique"
-                        style={{ width: '18rem', margin: '10px', cursor: "pointer" }}
-                        className="mb-2"
-                        class="card"
+                        style={{ width: '18rem', margin: '10px' }}
+                        //className="mb-2"
+                        //class="card"
                         onMouseOver="visualiser la fiche"
-                    /*onClick={() => alert(elt.NomPlat)}*/
+                        /*onClick={() => alert(elt[0].NomPlat)}*/
                     >
-                        <Card.Header >{elt.NomPlat}</Card.Header>
+                        <Card.Header onClick={() => {
+                            setModalFicheTech(true)
+                        }}>
+                            {elt[0].NomPlat}
+                        </Card.Header>
                         <Card.Body>
-                            <Card.Title>Nom du plat : {elt.NomPlat}</Card.Title>
+                            <Card.Title>Nom du plat : {elt[0].NomPlat}</Card.Title>
                             <Card.Text>
-                                Nom de l'auteur : {elt.NomAuteur}
+                                Nom de l'auteur : {elt[0].NomAuteur}
                             </Card.Text>
                             <Card.Text>
-                                Nombre de couvert : {elt.NbCouvert}
+                                Nombre de couvert : {elt[0].NbCouvert}
                             </Card.Text>
                         </Card.Body>
+                        <Card.Footer>
+                            <DeleteFicheTech id = {elt[1]}/>
+                            <Button className="modifyBtn" ><EditIcon /></Button>
+                        </Card.Footer>
                     </Card>
                 </div>
             ))}
