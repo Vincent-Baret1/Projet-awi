@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EnteteForm from "./components/EnteteForm";
 import MenuBar from "./components/MenuBar/MenuBar";
 import { Button } from "react-bootstrap";
@@ -6,7 +6,8 @@ import ProgressionForm from "./components/ProgressionForm";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import IngredientForm from "./components/IngredientForm";
 import Modal from "./components/Modal";
-
+import firebase from "./firebase";
+import Etape from "./components/Etape/Etape";
 
 const db = getFirestore();
 
@@ -59,14 +60,14 @@ function FicheTechniquePage() {
     }
 
     const createProgressionForm = event => {
-        setInputList(inputList.concat(<ProgressionForm key={inputList.length} 
-                                                        titre = {titre} onChangeTitre = {onChangeTitreHandler}
-                                                        description = {description} onChangeDescription = {onChangeDescriptionHandler}
-                                                        duree = {duree} onChangeDuree = {onChangeDureeHandler}
-                                                        />))
+        setInputList(inputList.concat(<ProgressionForm key={inputList.length}
+            titre={titre} onChangeTitre={onChangeTitreHandler}
+            description={description} onChangeDescription={onChangeDescriptionHandler}
+            duree={duree} onChangeDuree={onChangeDureeHandler}
+        />))
     }
 
-    
+
 
     const resetForm = () => {
         setNomAuteur('');
@@ -74,28 +75,94 @@ function FicheTechniquePage() {
         setNbCouvert('');
     }
 
+    const [Etapes, setEtapes] = useState([]);
+    const [ModalEtapes, setModalEtapes] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const ref = firebase.firestore().collection("Etapes");
+    function getEtapes() {
+        setLoading(true);
+        ref.onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push([doc.data(), doc.id]);
+            });
+            setEtapes(items);
+            setLoading(false);
+
+
+        })
+    }
+
+    useEffect(() => {
+        getEtapes();
+    }, []);
+
+    if (loading) {
+        return (
+            <h1>Loading...</h1>
+        );
+    }
+
     return (
         <div >
             <MenuBar />
-                <div>
+            <div>
                 <h2 style={{ margin: "30px" }}> En-tête de la fiche : </h2>
-                <EnteteForm nomPlat = {nomPlat} onChangeNomPlat = {onChangeNomPlatHandler} 
-                            nomAuteur = {nomAuteur} onChangeNomAuteur = {onChangeNomAuteurHandler}
-                            nbCouvert = {nbCouvert} onChangeNbCouvert = {onChangeNbCouvertHandler} />
+                <EnteteForm nomPlat={nomPlat} onChangeNomPlat={onChangeNomPlatHandler}
+                    nomAuteur={nomAuteur} onChangeNomAuteur={onChangeNomAuteurHandler}
+                    nbCouvert={nbCouvert} onChangeNbCouvert={onChangeNbCouvertHandler} />
 
                 <hr />
 
                 <h2 style={{ margin: "30px" }}> Progression de la fiche : </h2>
+                <Button variant="outline-primary"
+                    onClick={() => {
+                        setModalEtapes(true)
+                    }}
+                    style={{ marginLeft: "100px", marginRight: "100px", marginBottom: "30px" }}> selectionner une etape existante</Button>{' '}
+                <br />
+
+                <Modal
+                    show={ModalEtapes}
+                    handleClose={() => setModalEtapes(false)}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered>
+                    <div style={{
+                        display:'flex',
+                        flexWrap: 'wrap',
+                        overflowX: 'hidden',
+                        overflowY: 'auto'
+                    }}>
+                        {
+                            Etapes.map((value, key) => {
+                                if (value[0].ListIng == null) {
+                                    return (
+                                        <h6>no title</h6>
+                                    );
+                                }
+                                else {
+                                    return <Etape Etape={value[0]}></Etape>
+
+                                }
+
+                            })
+                        }
+                    </div>
+
+
+                </Modal>
 
                 <Button variant="outline-primary" onClick={createProgressionForm}
-                    style={{ marginLeft: "100px", marginRight: "100px", marginBottom:"30px"}}> Ajouter une étape</Button>{' '}
+                    style={{ marginLeft: "100px", marginRight: "100px", marginBottom: "30px" }}> Ajouter une étape</Button>{' '}
                 <br />
                 {inputList}
-                </div>
+            </div>
 
-                <Button variant="outline-primary" onClick={() => {sendEnteteData(nomPlat, nomAuteur, nbCouvert); resetForm();}}
-                    style={{ marginLeft: "100px", marginRight: "100px", marginBottom:"30px"}}>Envoyer la fiche technique</Button>
-            
+            <Button variant="outline-primary" onClick={() => { sendEnteteData(nomPlat, nomAuteur, nbCouvert); resetForm(); }}
+                style={{ marginLeft: "100px", marginRight: "100px", marginBottom: "30px" }}>Envoyer la fiche technique</Button>
+
 
 
         </div>

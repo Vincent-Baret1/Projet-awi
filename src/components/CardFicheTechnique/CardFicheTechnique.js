@@ -9,7 +9,7 @@ import Modal from "../Modal";
 import DeleteFicheTech from "../DeleteFicheTech";
 
 import EditIcon from '@mui/icons-material/Edit';
-import Delete from "@mui/icons-material/Delete";
+
 
 function CardFicheTechnique() {
 
@@ -19,6 +19,8 @@ function CardFicheTechnique() {
     const [Items, setItems] = useState()
 
     const ref = firebase.firestore().collection("En-tête fiche technique");
+
+    
 
     function getEnTete() {
         setLoading(true);

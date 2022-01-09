@@ -4,6 +4,8 @@ import firebase from '../firebase'
 import { GoPencil } from 'react-icons/go'
 import Modal from './Modal';
 import { Form, Button } from "react-bootstrap";
+import EditIcon from '@mui/icons-material/Edit';
+
 const db = firebase.firestore()
 function changeIng(newIname, newType, newQuantity, newUnit, newCu, id) {
     db.collection("Ingrédients").doc(id).update(
@@ -95,8 +97,8 @@ export default class UpdateIngredient extends Component {
                         </Form>
                     </div>
                 </Modal>
-                <button onClick={this.showModal}>
-                    Modifier <GoPencil />
+                <button onClick={this.showModal} style={{width : 'auto'}}>
+                    <EditIcon />
                 </button>
             </div>
 

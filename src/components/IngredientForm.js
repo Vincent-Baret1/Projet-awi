@@ -18,20 +18,7 @@ async function sendIngredient(Iname, Type, Quantity, Unit, Cu) {
     }
 }
 
-async function sendIngredientToRecipe(Iname, Type, Quantity, Unit, Cu, NomPlat) {
-    try {
-        const docRef = await addDoc(collection(collection(db, "Recettes"),"Recette1"), {
-            Iname: Iname,
-            Type : Type,
-            Quantity : Quantity,
-            Unit : Unit,
-            Cu : Cu
-        });
-        alert("Ingrédient ajouté à la base !");
-    } catch (e) {
-        console.error("Error adding document : ", e);
-    }
-}
+
 
 class IngredientForm extends React.Component {
     constructor(props) {
@@ -105,10 +92,10 @@ class IngredientForm extends React.Component {
                         if(this.props.NomPlat == null){
                             sendIngredient(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit, this.state.Cu); this.resetForm();
                         }
-                        else{
+                        /*else{
                             alert("on est ici")
                             sendIngredientToRecipe(this.state.Iname, this.state.Type, this.state.Quantity, this.state.Unit, this.state.Cu, this.props.NomPlat); this.resetForm();
-                        }    
+                        }*/    
                     }}>
                         Envoyer
                     </Button>
