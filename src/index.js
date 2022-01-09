@@ -11,6 +11,7 @@ import HomePage from './HomePage/HomePage';
 import PageVisitor from './PageVisitor';
 import ProgressionForm from './components/ProgressionForm';
 import { useAuthState, AuthContextProvider, } from './firebase';
+import PageCalculCouts from './PageCalculCouts';
 
 
 
@@ -53,6 +54,7 @@ ReactDOM.render(
         <UnauthenticatedRoute path="/LoginPage" element={<LoginPage />} />
         <AuthenticatedRoute path="/FicheTechniquePage" element={<ProgressionForm />} />
         <AuthenticatedRoute path="/ListIngredientsPage" element={<ListIngredientsPage />} />
+        <AuthenticatedRoute path="/PageCalculCouts" element={<PageCalculCouts />} />
         <AuthenticatedRoute path="/App" element={<App />} />
         <UnauthenticatedRoute path="/PageVisitor" element={<PageVisitor />} />
     </BrowserRouter>

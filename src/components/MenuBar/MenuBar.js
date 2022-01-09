@@ -34,18 +34,22 @@ function MenuBar() {
                     <Nav className="me-auto">
 
                         <Nav.Link href="#FicheTechnique">
-                            <Link to="/FicheTechniquePage" style={{ textDecoration:'none' , color:'white' , marginRight:'20px'}}>
+                            <Link to="/FicheTechniquePage" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
                                 Fiche technique
                             </Link>
                         </Nav.Link>
 
                         <Nav.Link href="#ListIngredient">
-                            <Link to="/listIngredientsPage" style={{ textDecoration:'none' , color:'white' , marginRight:'20px'}}>
+                            <Link to="/listIngredientsPage" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
                                 Liste des ingéredients
                             </Link>
                         </Nav.Link>
 
-                        <Nav.Link href="#calculCout" style={{ textDecoration:'none' , color:'white' , marginRight:'20px'}}>Calcul des coûts</Nav.Link>
+                        <Nav.Link href="#calculCout" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
+                            <Link to="/PageCalculCouts" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
+                                Calcul des coûts
+                            </Link>
+                        </Nav.Link>
                     </Nav>
                     <Nav>
                         <Button style={{ color: 'black', background: 'antiquewhite', border: '10px' }} onClick={() => SignOut()}>se déconnecter</Button>
