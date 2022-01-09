@@ -11,6 +11,7 @@ import DeleteFicheTech from "../DeleteFicheTech";
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@mui/icons-material/Edit';
+import ReactPDF, { PDFViewer, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 
 function CardFicheTechnique() {
@@ -22,11 +23,11 @@ function CardFicheTechnique() {
 
     const [filteredData, setFilteredData] = useState(enTete);
 
-    const ref = firebase.firestore().collection("En-tête fiche technique");
+    const ref = firebase.firestore().collection("Fiche technique");
 
 
 
-    function getEnTete() {
+    function getFiche() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
             const items = [];
@@ -38,13 +39,42 @@ function CardFicheTechnique() {
             setLoading(false);
         })
     }
-    //à faire une fonction qui récupère la fiche technique de la base de données et le renvoie dans un modal
 
-    function getFicheTech(NomPlat) {
+    const [modalFiche, setModalFiche] = useState();
 
+
+    function createModal(elt) {
+        setModalFiche(
+            <Modal
+                show={ModalFicheTech}
+                onHide={() => { setModalFicheTech(false) }}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <PDFViewer width='800px' height='600px'>
+                    <Document>
+                        <Page size="A4">
+                            <View>
+                                <Text>Titre de la recette : {elt.NomPlat}{"\n"}{"\n"}{"\n"}</Text>
+                                <Text>Nom de l'auteur : {elt.NomAuteur}</Text>
+                                <Text>Nombre de couvert : {elt.NbCouvert}{"\n"}{"\n"}</Text>
+                                {elt.Etape.map(elt => <View>
+                                    <Text>{elt.titre}{"\n"}{"\n"}</Text>
+                                    <Text>{elt.description}{"\n"}{"\n"}</Text>
+                                    <View>{elt.ingredientsList.map(
+                                        ing =>  <Text>Ingrédients : {ing}{"\n"}</Text>
+                                    )}</View>
+                                    <Text>{elt.quantityList.map(
+                                        quant => <Text>Quantité : {quant}{"\n"}</Text>
+                                    )}{"\n"}{"\n"}</Text>
+                                    </View>)}
+                            </View>
+                        </Page>
+                    </Document>
+                </PDFViewer>
+            </Modal>
+        )
     }
-    //
-
 
     const [EnteteEntered, setEnteteEntered] = useState([]);
 
@@ -69,7 +99,7 @@ function CardFicheTechnique() {
     };
 
     useEffect(() => {
-        getEnTete();
+        getFiche();
         setFilteredData(enTete);
     }, []);
 
@@ -88,20 +118,8 @@ function CardFicheTechnique() {
                 marginRight: '15%'
             }}>
 
-            <Modal
-                show={ModalFicheTech}
-                onHide={() => { setModalFicheTech(false) }}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered>
-                <div>
-                    <p>
-                        Fiche technique à inserer ici
-                    </p>
-                </div>
 
-
-            </Modal>
+            {ModalFicheTech == true && modalFiche}
 
             <div className="searchInputs">
                 <input
@@ -121,7 +139,7 @@ function CardFicheTechnique() {
             {
                 filteredData.map((elt) => {
 
-                    return(
+                    return (
                         <div>
                             <Card
                                 props={elt[0]}
@@ -131,11 +149,12 @@ function CardFicheTechnique() {
                                 style={{ width: '18rem', margin: '10px' }}
                             //className="mb-2"
                             //class="card"
-    
+
                             /*onClick={() => alert(elt[0].NomPlat)}*/
                             >
                                 <Card.Header onClick={() => {
                                     setModalFicheTech(true)
+                                    createModal(elt[0])
                                 }}>
                                     {elt[0].NomPlat}
                                 </Card.Header>
@@ -156,7 +175,7 @@ function CardFicheTechnique() {
                         </div>
                     )
                 }
-                    )}
+                )}
         </div>
     );
 }

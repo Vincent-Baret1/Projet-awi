@@ -11,7 +11,7 @@ export default function DeleteFicheTech(props) {
     const deleteFicheTech = (id) => {
         //alert(id)
         //alert(db.collection("Ingrédients").doc(id).Iname)
-        db.collection("En-tête fiche technique").doc(id).delete().then(() => {
+        db.collection("Fiche technique").doc(id).delete().then(() => {
             alert("Fiche Technique successfully deleted!");
         }).catch((error) => {
             console.log("Error removing Ingredient: ", error);
