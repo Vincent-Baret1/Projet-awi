@@ -58,7 +58,7 @@ ReactDOM.render(
     <BrowserRouter>
         <AuthenticatedRoute path="/" element={<HomePage />} />
         <UnauthenticatedRoute path="/LoginPage" element={<LoginPage />} />
-        <AuthenticatedRoute path="/FicheTechniquePage" element={<FicheTechniquePage />} />
+        <AuthenticatedRoute path="/FicheTechniquePage" element={<ProgressionForm />} />
         <AuthenticatedRoute path="/ListIngredientsPage" element={<ListIngredientsPage />} />
         <AuthenticatedRoute path="/App" element={<App />} />
         <UnauthenticatedRoute path="/PageVisitor" element={<PageVisitor />} />
