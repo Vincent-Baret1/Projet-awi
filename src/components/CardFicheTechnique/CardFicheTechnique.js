@@ -106,10 +106,11 @@ function CardFicheTechnique() {
             <div className="searchInputs">
                 <input
                     type="text"
+                    placeholder="Plat désiré.."
                     value={EnteteEntered}
                     onChange={handleFilter} />
 
-                {filteredData.length === 0 ? (
+                {EnteteEntered.length === 0 ? (
                     <SearchIcon />
                 ) :
                     (<CloseIcon
