@@ -1,42 +1,42 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
-import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
 
-export default function Etape(props) {
+export default class Etape extends React.Component {
 
-    return (
+    render() {
 
-        <Card
-            bg="white"
-            text="Fiche Technique"
-            style={{
-                width: '18rem', margin: '10px', height: 'max-content', display: 'flex',
-                flexWrap: 'wrap'
-            }}
-        >
-            <Card.Header >
-                {props.Etape.Titre}
-            </Card.Header>
-            <Card.Body>
-                <Card.Text>
-                    Description : {props.Etape.Description}
-                </Card.Text>
-                <Card.Text>
-                    Durée : {props.Etape.Durée}
-                </Card.Text>
-                <Card.Text>
-                    List des Ingrédients : {props.Etape.ListIng.map((value, key) => {
+        return (
+
+            <Card
+                bg="white"
+                text="Fiche Technique"
+                style={{
+                    width: '18rem', margin: '10px', height: 'max-content', display: 'flex',
+                    flexWrap: 'wrap'
+                }}
+            >
+                <Card.Header >
+                    {this.props.Etape.Titre}
+                </Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        Description : {this.props.Etape.Description}
+                    </Card.Text>
+                    <Card.Text>
+                        Durée : {this.props.Etape.Durée}
+                    </Card.Text>
+                    <Card.Text>
+                        List des Ingrédients : {this.props.Etape.ListIng.map((value, key) => {
                             return <p>{value}</p>
 
 
-                    })
-                    }
-                </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-                <Button ><EditIcon /></Button>
-            </Card.Footer>
-        </Card>
-    )
+                        })
+                        }
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        )
 
+    }
 }

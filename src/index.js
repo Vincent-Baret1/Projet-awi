@@ -6,17 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage/LoginPage';
-import FicheTechniquePage from './FicheTechniquePage';
 import ListIngredientsPage from './ListIngredientsPage';
 import HomePage from './HomePage/HomePage';
 import PageVisitor from './PageVisitor';
+import ProgressionForm from './components/ProgressionForm';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/LoginPage" element={<LoginPage />} />
-      <Route path="/FicheTechniquePage" element={<FicheTechniquePage />} />
+      <Route path="/FicheTechniquePage" element={<ProgressionForm />} />
       <Route path="/ListIngredientsPage" element={<ListIngredientsPage />} />
       <Route path="/App" element={<App />} />
       <Route path="/PageVisitor" element={<PageVisitor />} />
