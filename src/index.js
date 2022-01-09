@@ -6,10 +6,10 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './LoginPage/LoginPage';
-import FicheTechniquePage from './FicheTechniquePage';
 import ListIngredientsPage from './ListIngredientsPage';
 import HomePage from './HomePage/HomePage';
 import PageVisitor from './PageVisitor';
+import ProgressionForm from './components/ProgressionForm';
 import { useAuthState, AuthContextProvider, } from './firebase';
 
 
@@ -34,6 +34,12 @@ const UnauthenticatedRoute = ({ component: C, ...props }) => {
   console.log(`UnauthenticatedRoute: ${isAuthenticated}`)
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/LoginPage" element={<LoginPage />} />
+      <Route path="/FicheTechniquePage" element={<ProgressionForm />} />
+      <Route path="/ListIngredientsPage" element={<ListIngredientsPage />} />
+      <Route path="/App" element={<App />} />
+      <Route path="/PageVisitor" element={<PageVisitor />} />
       <Route
       {...props}
       render={routeProps =>
@@ -52,7 +58,7 @@ ReactDOM.render(
     <BrowserRouter>
         <AuthenticatedRoute path="/" element={<HomePage />} />
         <UnauthenticatedRoute path="/LoginPage" element={<LoginPage />} />
-        <AuthenticatedRoute path="/FicheTechniquePage" element={<FicheTechniquePage />} />
+        <AuthenticatedRoute path="/FicheTechniquePage" element={<ProgressionForm />} />
         <AuthenticatedRoute path="/ListIngredientsPage" element={<ListIngredientsPage />} />
         <AuthenticatedRoute path="/App" element={<App />} />
         <UnauthenticatedRoute path="/PageVisitor" element={<PageVisitor />} />
