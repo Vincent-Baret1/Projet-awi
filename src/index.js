@@ -22,10 +22,11 @@ const AuthenticatedRoute = ({ component: C, ...props }) => {
       <Route
       {...props}
       render={routeProps =>
-        isAuthenticated ? <C {...routeProps} /> : <Navigate to="/login" />
+        isAuthenticated ? <C {...routeProps} /> : <Navigate to="/LoginPage" />
       }
     />
     </Routes>
+    
   )
 }
 
@@ -34,21 +35,13 @@ const UnauthenticatedRoute = ({ component: C, ...props }) => {
   console.log(`UnauthenticatedRoute: ${isAuthenticated}`)
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/LoginPage" element={<LoginPage />} />
-      <Route path="/FicheTechniquePage" element={<ProgressionForm />} />
-      <Route path="/ListIngredientsPage" element={<ListIngredientsPage />} />
-      <Route path="/App" element={<App />} />
-      <Route path="/PageVisitor" element={<PageVisitor />} />
       <Route
       {...props}
       render={routeProps =>
-        !isAuthenticated ? <C {...routeProps} /> : <Navigate to="/" />
+        !isAuthenticated ? <C {...routeProps} /> : <Navigate to="/App" />
       }
     />
-    </Routes>
-    
-
+    </Routes>  
   )
 }
 
