@@ -220,6 +220,11 @@ function ProgressionForm() {
 
     const [listAffichage, setListAffichage] = useState([]);
 
+    const [listLabels, setListLabels] = useState([]);
+
+    const [SupprimerBtn, setSupprimerBtn] = useState('none');
+    
+
     const [nomPlat, setNomPlat] = useState("");
     const onChangeNomPlat = event => {
         setNomPlat(event.target.value);
@@ -243,18 +248,31 @@ function ProgressionForm() {
             duree: duree,
             ingredientsList: IngList,
             quantityList: QuantitiesList
-        }));
-        setListAffichage(listAffichage.concat(
-            <Card bg="dark" text="white"
+        }))
+        setListLabels(listLabels.concat(titre))
+        ;
+        
+    setListAffichage(listAffichage.concat(
+        <Card bg="dark" text="white"
                 style={{ widht: '50%', margin: '10px', padding: '10px' }}
                 className="mb-2">
                 <Card.Title>étape numéro {listAffichage.length + 1} - Titre de l'étape : {titre}</Card.Title>
                 <Card.Text>Description de l'étape : {description}</Card.Text>
                 <Card.Text>Durée de l'étape : {duree}</Card.Text>
-                <Card.Text>Ingrédients nécessaires pour l'étape : {IngList.map(ing => <p>{ing}</p>)}</Card.Text>
-                <Card.Text>Quantité respective pour chaque ingrédient : {QuantitiesList}</Card.Text>
-                <Button variant="light" style={{ width: '200px' }}>Supprimer cette étape</Button>
+                <Card.Text>Ingrédients et Quantités pour cette étape: 
+                    {IngList.map((ing,key) => {    
+                        return ( <p>ing:{ing} | Q : {QuantitiesList[key]}</p> );
+                        })}</Card.Text>
+                <Button variant="light" style={{ width: '200px' }}
+                onClick={()=>{
+
+                        deleteLastEtape(-1)  
+
+                    }}>
+                        Supprimer cette étape                   
+                        </Button>
             </Card>
+            
         ));
 
         setTitre("");
@@ -263,6 +281,14 @@ function ProgressionForm() {
         setIngList([]);
         setQuantitiesList([]);
 
+    }
+
+    function deleteLastEtape(indice) {
+        listAffichage.slice(indice,1)
+        setListAffichage(listAffichage)
+        listEtape.slice(indice,1)
+        setListEtape(listEtape)
+        //alert(listEtape.map((elem)=>elem.titre))
     }
 
     function resetAll() {
