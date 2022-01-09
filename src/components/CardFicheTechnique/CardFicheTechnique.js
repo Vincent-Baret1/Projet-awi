@@ -8,6 +8,8 @@ import ModalFicheTech from "../ModalFicheTech";
 import Modal from "../Modal";
 import DeleteFicheTech from "../DeleteFicheTech";
 
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@mui/icons-material/Edit';
 
 
@@ -18,9 +20,11 @@ function CardFicheTechnique() {
     const [ModalFicheTech, setModalFicheTech] = useState(false)
     const [Items, setItems] = useState()
 
+    const [filteredData, setFilteredData] = useState(enTete);
+
     const ref = firebase.firestore().collection("En-tête fiche technique");
 
-    
+
 
     function getEnTete() {
         setLoading(true);
@@ -30,6 +34,7 @@ function CardFicheTechnique() {
                 items.push([doc.data(), doc.id]);
             });
             setEnTete(items);
+            setFilteredData(items);
             setLoading(false);
         })
     }
@@ -40,8 +45,32 @@ function CardFicheTechnique() {
     }
     //
 
+    
+    const [EnteteEntered, setEnteteEntered] = useState([]);
+
+    const handleFilter = (event) => {
+
+        const searchEntete = event.target.value
+        setEnteteEntered(searchEntete)
+
+        const newFilter = enTete.filter((value) => {
+            return value[0].NomPlat.toLowerCase().startsWith(searchEntete.toLowerCase())
+        });
+        if (searchEntete === "") {
+            setFilteredData(enTete);
+        }
+        else {
+            setFilteredData(newFilter);
+        }
+    };
+    const clearInput = () => {
+        setFilteredData(enTete);
+        setEnteteEntered("");
+    };
+
     useEffect(() => {
         getEnTete();
+        setFilteredData(enTete);
     }, []);
 
     if (loading) {
@@ -52,9 +81,29 @@ function CardFicheTechnique() {
 
 
     return (
-        <div class="cardAcceuil" >
-            {enTete.map((elt) => (
+        <div class="cardAcceuil" 
+        style={{position:'relative',
+                marginLeft:'15%',
+                marginRight:'15%'
+                }}>
+            <div className="searchInputs">
+                <input
+                    type="text"
+                    value={EnteteEntered}
+                    onChange={handleFilter} />
+
+                {filteredData.length === 0 ? (
+                    <SearchIcon />
+                ) :
+                    (<CloseIcon
+                        id='clearBtn'
+                        onClick={clearInput} />)
+                }
+            </div>
+            {
+            filteredData.map((elt) => (
                 <div>
+
                     <Modal show={ModalFicheTech}
                         handleClose={() => setModalFicheTech(false)}>
                         <h1> {elt[0].NomAuteur} </h1>
@@ -68,7 +117,7 @@ function CardFicheTechnique() {
                         //className="mb-2"
                         //class="card"
                         onMouseOver="visualiser la fiche"
-                        /*onClick={() => alert(elt[0].NomPlat)}*/
+                    /*onClick={() => alert(elt[0].NomPlat)}*/
                     >
                         <Card.Header onClick={() => {
                             setModalFicheTech(true)
@@ -85,7 +134,7 @@ function CardFicheTechnique() {
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
-                            <DeleteFicheTech id = {elt[1]}/>
+                            <DeleteFicheTech id={elt[1]} />
                             <Button className="modifyBtn" ><EditIcon /></Button>
                         </Card.Footer>
                     </Card>

@@ -20,3 +20,11 @@
     color: black;
     margin-left: 40%
 }
+.searchInputs{
+    margin-left: 35%;
+    margin-right: 30%;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

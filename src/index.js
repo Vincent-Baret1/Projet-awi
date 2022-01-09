@@ -4,24 +4,62 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './LoginPage/LoginPage';
 import FicheTechniquePage from './FicheTechniquePage';
 import ListIngredientsPage from './ListIngredientsPage';
 import HomePage from './HomePage/HomePage';
 import PageVisitor from './PageVisitor';
+import { useAuthState, AuthContextProvider, } from './firebase';
+
+
+
+const AuthenticatedRoute = ({ component: C, ...props }) => {
+  const { isAuthenticated } = useAuthState()
+  console.log(`AuthenticatedRoute: ${isAuthenticated}`)
+  return (
+    <Routes>
+      <Route
+      {...props}
+      render={routeProps =>
+        isAuthenticated ? <C {...routeProps} /> : <Navigate to="/login" />
+      }
+    />
+    </Routes>
+  )
+}
+
+const UnauthenticatedRoute = ({ component: C, ...props }) => {
+  const { isAuthenticated } = useAuthState()
+  console.log(`UnauthenticatedRoute: ${isAuthenticated}`)
+  return (
+    <Routes>
+      <Route
+      {...props}
+      render={routeProps =>
+        !isAuthenticated ? <C {...routeProps} /> : <Navigate to="/" />
+      }
+    />
+    </Routes>
+    
+
+  )
+}
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/LoginPage" element={<LoginPage />} />
-      <Route path="/FicheTechniquePage" element={<FicheTechniquePage />} />
-      <Route path="/ListIngredientsPage" element={<ListIngredientsPage />} />
-      <Route path="/App" element={<App />} />
-      <Route path="/PageVisitor" element={<PageVisitor />} />
-    </Routes>
-  </BrowserRouter>,
+
+  <AuthContextProvider>
+    <BrowserRouter>
+        <AuthenticatedRoute path="/" element={<HomePage />} />
+        <UnauthenticatedRoute path="/LoginPage" element={<LoginPage />} />
+        <AuthenticatedRoute path="/FicheTechniquePage" element={<FicheTechniquePage />} />
+        <AuthenticatedRoute path="/ListIngredientsPage" element={<ListIngredientsPage />} />
+        <AuthenticatedRoute path="/App" element={<App />} />
+        <UnauthenticatedRoute path="/PageVisitor" element={<PageVisitor />} />
+    </BrowserRouter>
+  </AuthContextProvider>
+
+  ,
   document.getElementById('root')
 );
 
