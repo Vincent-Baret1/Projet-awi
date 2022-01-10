@@ -368,12 +368,13 @@ function ProgressionForm() {
                         size="lg"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered>
-                        <Button onClick={() => setModalEtapes(false)} variant="primary">Close</Button>
+                        <Button onClick={() => setModalEtapes(false)} variant="dark">Close</Button>
                         <div style={{
                             display: 'flex',
                             flexWrap: 'wrap',
                             overflowX: 'hidden',
-                            overflowY: 'auto'
+                            overflowY: 'auto',
+                            backgroundColor: 'rgb(243, 241, 241)'
                         }}>   
                             {
                                 Etapes.map((value, key) => {
@@ -383,8 +384,9 @@ function ProgressionForm() {
                                         );
                                     }
                                     else {
-                                        return <div><Etape Etape={value[0]}></Etape><Button onClick={() => onClickAjout(value[0].Titre, 
-                                            value[0].Description, value[0].Durée, value[0].ListIng, value[0].ListQuantities)}>Choisir cette étape <CheckIcon /></Button></div>
+                                        return <div><Etape Etape={value[0]}></Etape><Button variant="dark" onClick={() => onClickAjout(value[0].Titre, 
+                                            value[0].Description, value[0].Durée, value[0].ListIng, value[0].ListQuantities)}
+                                            style={{margin:'10px'}}>Choisir cette étape <CheckIcon /></Button></div>
 
                                     }
 
