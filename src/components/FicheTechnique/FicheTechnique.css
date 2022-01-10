@@ -1,0 +1,33 @@
+.TitleFicheTech{
+    width:90%;
+    background-color: beige;
+    margin-top: 5px;
+    margin-left: 5%;
+    border-radius: 10px;
+    border-style: double;
+}
+.etapes{
+    width: max-content;
+    overflow: auto;
+    float:right;
+    width:44%;   
+    background-color: rgb(160, 147, 147);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5%;
+    margin-left:1%;
+    border-radius: 10px;
+    border-style: double;
+}
+.ingrédients{
+    width: max-content;
+    float:left;
+    width:44%;   
+    background-color: whitesmoke;
+    margin-top: 5px;
+    margin-left: 5%;
+    margin-right:1%;
+    border-radius: 10px;
+    border-style: double;
+    margin-bottom: 5px;
+}

@@ -5,6 +5,8 @@ import { logout } from "../../auth";
 import { useNavigate } from "react-router-dom";
 import './MenuBar.css'
 
+import LogoutIcon from '@mui/icons-material/Logout';
+
 function MenuBar() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -52,7 +54,7 @@ function MenuBar() {
                         </Nav.Link>
                     </Nav>
                     <Nav>
-                        <Button style={{ color: 'black', background: 'antiquewhite', border: '10px' }} onClick={() => SignOut()}>se déconnecter</Button>
+                        <Button style={{ color: 'black', background: 'antiquewhite', border: '10px' }} onClick={() => SignOut()}><LogoutIcon/></Button>
                     </Nav>
                 </Container>
             </Navbar>

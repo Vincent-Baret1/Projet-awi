@@ -11,7 +11,11 @@ import DeleteFicheTech from "../DeleteFicheTech";
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@mui/icons-material/Edit';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+
 import ReactPDF, { PDFViewer, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import FicheTechnique from "../FicheTechnique/FicheTechnique";
 
 
 function CardFicheTechnique() {
@@ -19,6 +23,10 @@ function CardFicheTechnique() {
     const [enTete, setEnTete] = useState([]);
     const [loading, setLoading] = useState(false);
     const [ModalFicheTech, setModalFicheTech] = useState(false)
+
+    const [ModalFicheTechWeb, setModalFicheTechWeb] = useState(false)
+    const [Elt, setElt] = useState()
+
     const [Items, setItems] = useState()
 
     const [filteredData, setFilteredData] = useState(enTete);
@@ -52,7 +60,7 @@ function CardFicheTechnique() {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <PDFViewer width='800px' height='600px'>
-                    <Document>
+                    <Document >
                         <Page size="A4">
                             <View>
                                 <Text>Titre de la recette : {elt.NomPlat}{"\n"}{"\n"}{"\n"}</Text>
@@ -61,17 +69,18 @@ function CardFicheTechnique() {
                                 {elt.Etape.map(elt => <View>
                                     <Text>{elt.titre}{"\n"}{"\n"}</Text>
                                     <Text>{elt.description}{"\n"}{"\n"}</Text>
-                                    <View>{elt.ingredientsList.map(
-                                        ing =>  <Text>Ingrédients : {ing}{"\n"}</Text>
-                                    )}</View>
-                                    <Text>{elt.quantityList.map(
-                                        quant => <Text>Quantité : {quant}{"\n"}</Text>
-                                    )}{"\n"}{"\n"}</Text>
-                                    </View>)}
+                                    <View>{elt.ingredientsList.map((ing, key) => {
+                                        return (<Text>Ingrédients : {ing} | Q : {elt.quantityList[key]}{"\n"}</Text>);
+                                    })}
+
+                                    </View>
+                                </View>)}
+
                             </View>
                         </Page>
                     </Document>
                 </PDFViewer>
+
             </Modal>
         )
     }
@@ -121,6 +130,20 @@ function CardFicheTechnique() {
 
             {ModalFicheTech == true && modalFiche}
 
+            <Modal
+                show={ModalFicheTechWeb}
+                onHide={() => {
+                    setModalFicheTechWeb(false)
+                }}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <FicheTechnique fiche={Elt} />
+
+            </Modal>
+
+
+
             <div className="searchInputs">
                 <input
                     type="text"
@@ -152,10 +175,9 @@ function CardFicheTechnique() {
 
                             /*onClick={() => alert(elt[0].NomPlat)}*/
                             >
-                                <Card.Header onClick={() => {
-                                    setModalFicheTech(true)
-                                    createModal(elt[0])
-                                }}>
+
+
+                                <Card.Header >
                                     {elt[0].NomPlat}
                                 </Card.Header>
                                 <Card.Body>
@@ -169,7 +191,14 @@ function CardFicheTechnique() {
                                 </Card.Body>
                                 <Card.Footer>
                                     <DeleteFicheTech id={elt[1]} />
-                                    <Button className="modifyBtn" ><EditIcon /></Button>
+                                    <Button className="modifyBtn" onClick={() => {
+                                        setModalFicheTech(true)
+                                        createModal(elt[0])
+                                    }}><LocalPrintshopIcon /></Button>
+                                    <Button className="printBtn" onClick={() => {
+                                        setElt(elt[0])
+                                        setModalFicheTechWeb(true)
+                                    }}><VisibilityIcon /></Button>
                                 </Card.Footer>
                             </Card>
                         </div>
