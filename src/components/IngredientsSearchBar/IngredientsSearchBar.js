@@ -26,30 +26,31 @@ function IngredientsSearchBar({ placeholder, data }) {
         setFilteredData([]);
         setIngEntered("");
     };
+
     return (
         <div className="search">
             <div className="searchInputs">
-                <input 
+                <input
                     type="text"
                     placeholder={placeholder}
                     value={IngEntered}
                     onChange={handleFilter} />
 
-                    {filteredData.length === 0 ? (
-                        <SearchIcon />
-                    ) :
-                        (<CloseIcon 
-                            id='clearBtn' 
-                            onClick={clearInput} />)
-                    }
+                {filteredData.length === 0 ? (
+                    <SearchIcon />
+                ) :
+                    (<CloseIcon
+                        id='clearBtn'
+                        onClick={clearInput} />)
+                }
             </div>
-            
+
             {filteredData.length != 0 && (
                 <div className='dataResult'>
                     {filteredData.map((value, key) => {
                         return (
                             <div className="dataItem">
-                                <p>{value[0].Iname}</p>
+                                <p>{value[0].Iname} ligne : {value[0].id}</p>
                             </div>
                         );
                     })

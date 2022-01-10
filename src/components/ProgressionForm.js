@@ -103,13 +103,14 @@ function ProgressionForm() {
                         <Form>
                             <FloatingLabel
                                 controlId="floatingInput"
-                                label="Quantité de l'ingrédient choisi "
+                                label="Quantité de l'ingrédient choisi en"
                                 className="mb-3">
                                 <Form.Control type="text" name="Q" placeholder={this.props.name} value={this.state.Q} onChange={this.handleChange} />
                             </FloatingLabel>
                             <Button onClick={() => {
                                 //alert(IngList)
                                 //alert(QuantitiesList)
+                                setShowModal(false)
                                 IngList.push(this.props.name)
                                 setIngList(IngList)
                                 QuantitiesList.push(this.state.Q)
@@ -146,20 +147,17 @@ function ProgressionForm() {
             getIng();
         }, []);
 
-        if (loading) {
-            return (
-                <h1>Loading...</h1>
-            );
-        }
-
+       
 
 
         return (
             <div style={{ height: 'max-content' , width: 'max-content'}}>
-                <div style={{ width: 'auto' }}>
+                <div style={{ width: '12px' , marginLeft:'40%'}}>
                     <IngredientsSearchBar
+                        style={{marginLeft:'50%'}}
                         placeholder={"ingrédient"}
-                        data={Ing} />
+                        data={Ing}
+                         />
                 </div>
 
                 <Table style={{marginLeft:'10%'}} striped bordered hover >
@@ -194,11 +192,12 @@ function ProgressionForm() {
                                         <td>{ing.Quantity} {ing.Unit}</td>
                                         <td>{ing.Cu} € </td>
                                         <td>
-                                            {ing.Quantity > 0 && <Button onClick={() => {
+                                            { <Button onClick={() => {
                                                 setShowModal(true)
                                                 setAddedIng(ing.Iname)
                                                 setIngQuantity(ing.Quantity)
-                                            }}> Ajouter </Button>}
+                                            }}> Ajouter 
+                                            </Button>}
                                         </td>
                                     </tr>
                                 </>
@@ -289,7 +288,6 @@ function ProgressionForm() {
         setListAffichage(listAffichage)
         listEtape.slice(indice,1)
         setListEtape(listEtape)
-        //alert(listEtape.map((elem)=>elem.titre))
     }
 
     function resetAll() {
@@ -318,13 +316,6 @@ function ProgressionForm() {
     useEffect(() => {
         getEtapes();
     }, []);
-
-    if (loading) {
-        return (
-            <h1>Loading...</h1>
-        );
-    }
-
 
     return (
         <div>

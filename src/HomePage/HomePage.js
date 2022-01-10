@@ -14,7 +14,8 @@ export default function HomePage() {
                 <div className='MainButtons' >
                     <button type="button" class="btn btn-dark btn-lg"
                         style={{
-                            marginRight: '15px'
+                            marginRight: '15px',
+                            marginBottom:'15px'
                         }} >
                         <Link to="/LoginPage" style={{
                             textDecoration: 'none',
@@ -24,7 +25,8 @@ export default function HomePage() {
                         </Link>
                     </button>
                     <button type="button" class="btn btn-dark btn-lg" style={{
-                        marginLeft: '15px'
+                        marginLeft: '15px',
+                        marginBottom:'15px'
                     }}>
                         <Link to="/PageVisitor" style={{
                             textDecoration: 'none',

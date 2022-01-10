@@ -18,6 +18,9 @@ export default function DeleteFicheTech(props) {
         });
     }
     return (
-        <Button className="deleteBtn" onClick={() => deleteFicheTech(props.id)}><DeleteIcon/></Button>
+        <div>
+            <Button className="deleteBtn" onClick={() => deleteFicheTech(props.id)}><DeleteIcon/></Button>
+        </div>
+        
     )
 }

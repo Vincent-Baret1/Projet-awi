@@ -25,7 +25,7 @@ input:focus {
     width: 300px;
     height: 200px;
     background-color: rgb(170, 193, 196);
-    box-shadow: rgba(26, 14, 14, 0.35) 0px 5px 15px;
+    box-shadow: rgba(143, 107, 107, 0.35) 0px 5px 15px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -44,7 +44,7 @@ input:focus {
 }
 
 .dataItem:hover {
-  background-color: rgb(33, 57, 126);
+  background-color: rgb(131, 141, 170);
 }
 
 #clearBtn {

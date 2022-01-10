@@ -6,11 +6,10 @@ import DataIngredients from './DataIngredients.json'
 function PageVisitor() {
   return (
     <div className="App">
-      <p>PAS DE MANUBAR</p>
       <br />
       <h1>Fiches techniques déjà réalisées</h1>
       <div class="carte">
-        <CardFicheTechnique />
+        <CardFicheTechnique visitor='none'/>
       </div>
     </div>
   );

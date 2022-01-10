@@ -22,7 +22,7 @@ import FicheTechnique from "../FicheTechnique/FicheTechnique";
 
 
 
-function CardFicheTechnique() {
+function CardFicheTechnique(props) {
     
 
 
@@ -147,9 +147,9 @@ function CardFicheTechnique() {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
-                <FicheTechnique fiche={Elt} />
-                <div class="doNotPrint">
-                    <button  onClick={() => {window.print()}} className="BoutonPrint"><LocalPrintshopIcon/> </button>
+                <FicheTechnique fiche={Elt} style={{marginBottom:'20%'}}/>
+                <div class="doNotPrint" >
+                    <button style={{marginLeft:'47%', height:'50px', width:'50px'}} onClick={() => {window.print()}} className="BoutonPrint"><LocalPrintshopIcon/> </button>
                 </div>
                 
 
@@ -203,7 +203,10 @@ function CardFicheTechnique() {
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
-                                    <DeleteFicheTech id={elt[1]} />
+                                    <div style={{width:'min', marginLeft:'33%', marginBottom:'10px',display : props.visitor}}>
+                                        <DeleteFicheTech id={elt[1]}  />
+                                    </div>
+                                    
                                     
                                     <Button className="printBtn" onClick={() => {
                                         setElt(elt[0])
