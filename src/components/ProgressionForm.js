@@ -124,6 +124,7 @@ function ProgressionForm() {
         }
 
         const ref = firebase.firestore().collection("Ingrédients");
+        
         function getIng() {
             setLoading(true);
             ref.onSnapshot((querySnapshot) => {
@@ -154,14 +155,14 @@ function ProgressionForm() {
 
 
         return (
-            <div style={{ height: 'max-content' }}>
+            <div style={{ height: 'max-content' , width: 'max-content'}}>
                 <div style={{ width: 'auto' }}>
                     <IngredientsSearchBar
-                        placeholder={"Rechrche d'ingrédient"}
+                        placeholder={"ingrédient"}
                         data={Ing} />
                 </div>
 
-                <Table className='IngredientTable' striped bordered hover >
+                <Table style={{marginLeft:'10%'}} striped bordered hover >
                     <thead>
                         <tr>
                             <th>id</th>
@@ -269,7 +270,7 @@ function ProgressionForm() {
                         deleteLastEtape(-1)  
 
                     }}>
-                        Supprimer cette étape                   
+                        Supprimer la dernière étape                    
                         </Button>
             </Card>
             

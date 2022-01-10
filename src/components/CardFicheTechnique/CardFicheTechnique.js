@@ -7,6 +7,8 @@ import IngredientForm from "../IngredientForm";
 import ModalFicheTech from "../ModalFicheTech";
 import { Modal } from "react-bootstrap";
 import DeleteFicheTech from "../DeleteFicheTech";
+import useReactToPrint from 'react-to-print'
+import { useRef } from "react";
 
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
@@ -18,7 +20,11 @@ import ReactPDF, { PDFViewer, Page, Text, View, Document, StyleSheet } from '@re
 import FicheTechnique from "../FicheTechnique/FicheTechnique";
 
 
+
+
 function CardFicheTechnique() {
+    
+
 
     const [enTete, setEnTete] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -35,6 +41,8 @@ function CardFicheTechnique() {
 
 
 
+    
+
     function getFiche() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
@@ -46,7 +54,7 @@ function CardFicheTechnique() {
             setFilteredData(items);
             setLoading(false);
         })
-    }
+}
 
     const [modalFiche, setModalFiche] = useState();
 
@@ -118,6 +126,7 @@ function CardFicheTechnique() {
         );
     }
 
+    
 
     return (
         <div class="cardAcceuil"
@@ -139,6 +148,10 @@ function CardFicheTechnique() {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <FicheTechnique fiche={Elt} />
+                <div class="doNotPrint">
+                    <button  onClick={() => {window.print()}} className="BoutonPrint"><LocalPrintshopIcon/> </button>
+                </div>
+                
 
             </Modal>
 
@@ -191,10 +204,7 @@ function CardFicheTechnique() {
                                 </Card.Body>
                                 <Card.Footer>
                                     <DeleteFicheTech id={elt[1]} />
-                                    <Button className="modifyBtn" onClick={() => {
-                                        setModalFicheTech(true)
-                                        createModal(elt[0])
-                                    }}><LocalPrintshopIcon /></Button>
+                                    
                                     <Button className="printBtn" onClick={() => {
                                         setElt(elt[0])
                                         setModalFicheTechWeb(true)

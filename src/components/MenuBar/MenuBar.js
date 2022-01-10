@@ -49,7 +49,7 @@ function MenuBar() {
 
                         <Nav.Link href="#calculCout" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
                             <Link to="/PageCalculCouts" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
-                                Calcul des coûts
+                                
                             </Link>
                         </Nav.Link>
                     </Nav>

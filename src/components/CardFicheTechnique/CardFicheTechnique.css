@@ -27,7 +27,7 @@
     width : auto ;
     align-self: center;
     color: white;
-    margin-left: 10%
+    margin-left: 40%
 }
 
 .searchInputs{
@@ -37,4 +37,8 @@
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+}
+
+@media print{
+    .doNotPrint{display:none !important;}
 }
