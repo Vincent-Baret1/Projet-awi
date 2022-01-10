@@ -320,7 +320,7 @@ function ProgressionForm() {
     return (
         <div>
             <MenuBar />
-            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", marginBottom: "30px", padding: "20px" }}>
+            <Card style={{ marginLeft: "100px", marginRight: "100px", marginTop: "40px", marginBottom: "30px", padding: "20px", backgroundColor: 'rgb(243, 241, 241)', borderRadius: '2%' }}>
                 <Form>
                     <h1>En-tête de la fiche :</h1><br />
                     <FloatingLabel
@@ -345,11 +345,11 @@ function ProgressionForm() {
                     </FloatingLabel>
                     <h1>étape de la fiche :</h1><br />
 
-                    <Button variant="outline-primary"
+                    <Button variant="outline-dark"
                         onClick={() => {
                             setModalEtapes(true)
                         }}
-                        style={{ marginLeft: "100px", marginRight: "100px", marginBottom: "30px" }}> selectionner une etape existante</Button>{' '}
+                        style={{ marginLeft: "100px", marginRight: "100px", marginBottom: "30px" }}> Sélectionner une etape existante</Button>{' '}
                     <br />
 
 
@@ -359,12 +359,13 @@ function ProgressionForm() {
                         size="lg"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered>
-                        <Button onClick={() => setModalEtapes(false)} variant="primary">Close</Button>
+                        <Button onClick={() => setModalEtapes(false)} variant="dark">Close</Button>
                         <div style={{
                             display: 'flex',
                             flexWrap: 'wrap',
                             overflowX: 'hidden',
-                            overflowY: 'auto'
+                            overflowY: 'auto',
+                            backgroundColor: 'rgb(243, 241, 241)'
                         }}>   
                             {
                                 Etapes.map((value, key) => {
@@ -374,8 +375,9 @@ function ProgressionForm() {
                                         );
                                     }
                                     else {
-                                        return <div><Etape Etape={value[0]}></Etape><Button onClick={() => onClickAjout(value[0].Titre, 
-                                            value[0].Description, value[0].Durée, value[0].ListIng, value[0].ListQuantities)}>Choisir cette étape <CheckIcon /></Button></div>
+                                        return <div><Etape Etape={value[0]}></Etape><Button variant="dark" onClick={() => onClickAjout(value[0].Titre, 
+                                            value[0].Description, value[0].Durée, value[0].ListIng, value[0].ListQuantities)}
+                                            style={{margin:'10px'}}>Choisir cette étape <CheckIcon /></Button></div>
 
                                     }
 
@@ -407,15 +409,15 @@ function ProgressionForm() {
                     </FloatingLabel>
 
                     <Form.Label>Ingrédients : </Form.Label>
-                    <Button variant="primary"
+                    <Button variant="outline-dark"
                         onClick={() => {
                             setModalShow(true)
                         }}
                         style={{ marginLeft: "30px" }}>
-                        Choisir
+                        Choisir un ingrédient
                     </Button>
 
-                    <Button variant="primary"
+                    <Button variant="dark"
                         onClick={() => {
 
 
@@ -441,8 +443,8 @@ function ProgressionForm() {
                     </ul>
                     {listAffichage}
 
-                    <Button variant="primary" onClick={() => { sendAllEtape(nomPlat, nomAuteur, nbCouvert, listEtape); resetAll() }} style={{ marginLeft: "30px" }}>
-                        Envoyer tout
+                    <Button variant="dark" onClick={() => { sendAllEtape(nomPlat, nomAuteur, nbCouvert, listEtape); resetAll() }} style={{ marginLeft: "30px" }}>
+                        Tout envoyer
                     </Button>
                 </Form>
             </Card>
