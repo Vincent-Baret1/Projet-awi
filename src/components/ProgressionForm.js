@@ -74,6 +74,7 @@ function ProgressionForm() {
         const [ShowModal, setShowModal] = useState(false);
         const [Quantity, setQuantity] = useState(0);
         const [AddedIng, setAddedIng] = useState();
+        const [unit, setAddedsetUnit] = useState('');
 
         class QuantityAdd extends Component {
             constructor(props) {
@@ -103,7 +104,7 @@ function ProgressionForm() {
                         <Form>
                             <FloatingLabel
                                 controlId="floatingInput"
-                                label="Quantité de l'ingrédient choisi en"
+                                label="Quantité de l'ingrédient choisi "
                                 className="mb-3">
                                 <Form.Control type="text" name="Q" placeholder={this.props.name} value={this.state.Q} onChange={this.handleChange} />
                             </FloatingLabel>
@@ -174,6 +175,7 @@ function ProgressionForm() {
                     <QuantityAdd
                         name={AddedIng}
                         quantity={ingQuantity}
+                        
                         show={ShowModal}
                         onHide={() => setShowModal(false)}
                     />
@@ -194,6 +196,7 @@ function ProgressionForm() {
                                         <td>
                                             { <Button onClick={() => {
                                                 setShowModal(true)
+                                                ///////////////////////// ///// /////
                                                 setAddedIng(ing.Iname)
                                                 setIngQuantity(ing.Quantity)
                                             }}> Ajouter 

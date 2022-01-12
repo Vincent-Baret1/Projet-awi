@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import './MenuBar.css'
 
 import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
+import FeedIcon from '@mui/icons-material/Feed';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 function MenuBar() {
     const [error, setError] = useState("");
@@ -29,20 +32,30 @@ function MenuBar() {
             <Navbar className="Nav" bg="dark" variant="dark">
                 <Container>
 
-                    <Link to="/App">
-                        <Navbar.Brand className="title" href="#home">Chef</Navbar.Brand>
+                    <Link to="/App" style={{textDecoration:'none' }}>
+                        <Navbar.Brand className="title" href="#home" > 
+                        <HomeIcon style={{marginBottom : '8px'}}/>    
+                        Chef
+                        </Navbar.Brand>
                     </Link>
 
                     <Nav className="me-auto">
 
                         <Nav.Link href="#FicheTechnique">
-                            <Link to="/FicheTechniquePage" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
-                                Fiche technique
+                            <Link to="/FicheTechniquePage" 
+                            style={{ textDecoration: 'none',
+                                        color: 'white',
+                                        marginRight: '100px',
+                                        marginLeft:'100px' 
+                                        }}>
+                                <FeedIcon/>
+                                Création Fiche technique
                             </Link>
                         </Nav.Link>
 
                         <Nav.Link href="#ListIngredient">
                             <Link to="/listIngredientsPage" style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }}>
+                                <RestaurantIcon/>
                                 Liste des ingéredients
                             </Link>
                         </Nav.Link>

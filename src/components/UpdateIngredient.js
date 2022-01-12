@@ -87,7 +87,7 @@ export default class UpdateIngredient extends Component {
                             <Form.Label placeholder={this.props.ing.Iname}>Unit</Form.Label>
                             <Form.Control defaultValue={this.state.Unit} onChange={this.handleChangeUnit}/>
 
-                            <Form.Label placeholder={this.props.ing.Iname}>Unit</Form.Label>
+                            <Form.Label placeholder={this.props.ing.Iname}>Unit Cost</Form.Label>
                             <Form.Control defaultValue={this.state.Cu} onChange={this.handleChangeCu}/>
 
 
